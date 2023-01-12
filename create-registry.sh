@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-certs=/etc/docker/certs.d/127.0.0.1:5000
+certs=/etc/docker/certs.d/172.16.11.136:8443
 mkdir /registry-image
 mkdir /etc/docker/certs
 mkdir -p $certs
@@ -14,8 +14,8 @@ docker run -d \
   --name registry \
   -v /etc/docker/certs:/docker-in-certs:ro \
   -v /registry-image:/var/lib/registry \
-  -e REGISTRY_HTTP_ADDR=0.0.0.0:5000 \
+  -e REGISTRY_HTTP_ADDR=0.0.0.0:8443 \
   -e REGISTRY_HTTP_TLS_CERTIFICATE=/docker-in-certs/tls.crt \
   -e REGISTRY_HTTP_TLS_KEY=/docker-in-certs/tls.key \
-  -p 5000:443 \
+  -p 8443:443 \
   registry:2
